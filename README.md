@@ -11,7 +11,10 @@ Supported HTTP Clients: Guzzle 4.x, Guzzle 3.x, Resty 0.6.x
 
 Frameworks: Native PHP, Laravel 4.1
 
+PHP >= 5.4.x (short array syntax, which will be refactored to support 5.3.x)
+
 **TODO**:
+
 1. Improve PHPDoc blocks
 2. Ability to use Addon OAuth ID and Secret
 3. Laravel Facades and Configurations
@@ -32,6 +35,8 @@ Begin by installing this package through Composer.
     }
 }
 ```
+
+You should have at least one HTTP Client installed. Supported out of box are Guzzle and Resty.
 
 ### Http Client
 

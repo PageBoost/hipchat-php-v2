@@ -2,7 +2,7 @@
     "name": "page-boost/hipchat-php-v2",
     "type": "library",
     "description": "PHP library for HipChat API v2",
-    "keywords": ["hipchat", "laravel"],
+    "keywords": ["hipchat", "laravel", "api"],
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.4.0"
     },
     "require-dev": {
         "illuminate/support": "4.1.*",
@@ -21,8 +21,8 @@
     },
     "suggest": {
         "guzzlehttp/guzzle": "Guzzle HTTP Client v4 (with/out curl)",
-        "guzzle/guzzle:": "Guzzle HTTP Client v3 (with curl)",
-        "resty/resty:": "Resty v0.6 (without curl)"
+        "guzzle/guzzle": "Guzzle HTTP Client v3 (with curl)",
+        "resty/resty": "Resty v0.6 (without curl)"
     },
     "autoload": {
         "psr-0": {
