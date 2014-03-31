@@ -26,9 +26,9 @@ class GuzzleV4 implements RequestInterface
             return;
         }
 
-        $client = new Client([
-            'base_url' => [HipChat::BASE_URL.'/{version}/', ['version' => HipChat::API_VERSION]],
-        ]);
+        $client = new Client(array(
+            'base_url' => array(HipChat::BASE_URL.'/{version}/', array('version' => HipChat::API_VERSION)),
+        ));
 
         $this->client = $client;
     }

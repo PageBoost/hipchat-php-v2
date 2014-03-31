@@ -20,10 +20,10 @@ class Webhooks extends BaseExpand
 
     public function all($startIndex = 0, $maxResult = 100)
     {
-        $queryParams = [
+        $queryParams = array(
             'start-index' => $startIndex,
             'max-results' => $maxResult,
-        ];
+        );
         $room_id = $this->getRoomId();
 
         $response = $this->request->get('room/'.$room_id.'/webhook', array_merge($queryParams, $this->expandQuery()));
@@ -33,7 +33,7 @@ class Webhooks extends BaseExpand
 
     public function get()
     {
-        $queryParams = [];
+        $queryParams = array();
         $room_id_or_name = $this->getRoomId();
         $hook_id = $this->getHookId();
 
@@ -44,12 +44,12 @@ class Webhooks extends BaseExpand
 
     public function create($url, $event, $pattern = '', $name = '')
     {
-        $queryParams = [
+        $queryParams = array(
             'url' => $url,
             'event' => $event,
             'pattern' => $pattern,
             'name' => $name,
-        ];
+        );
         $room_id_or_name = $this->getRoomId();
 
         $response = $this->request->post('room/'.$room_id_or_name.'/webhook', $queryParams);
@@ -64,7 +64,7 @@ class Webhooks extends BaseExpand
 
     public function delete()
     {
-        $queryParams = [];
+        $queryParams = array();
         $room_id_or_name = $this->getRoomId();
         $hook_id = $this->getHookId();
 

@@ -17,7 +17,7 @@ class Sessions extends BaseExpand
 
     public function get()
     {
-        $queryParams = [];
+        $queryParams = array();
         $session_id = $this->getId();
 
         $response = $this->request->get('oauth/token/'.$session_id, array_merge($queryParams, $this->expandQuery()));
@@ -27,9 +27,9 @@ class Sessions extends BaseExpand
 
     public function create($grant_type, $_options = array())
     {
-        $queryParams = [
+        $queryParams = array(
             'grant_type' => $grant_type,
-        ];
+        );
         if (isset($_options['username'])) {
             $queryParams['username'] = $_options['username'];
         }
@@ -57,7 +57,7 @@ class Sessions extends BaseExpand
 
     public function delete()
     {
-        $queryParams = [];
+        $queryParams = array();
         $session_id = $this->getId();
 
         $response = $this->request->delete('oauth/token/'.$session_id, $queryParams);

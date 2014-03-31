@@ -18,12 +18,12 @@ class Users extends BaseExpand
 
     public function all($include_guests = false, $include_deleted = false, $startIndex = 0, $maxResult = 100)
     {
-        $queryParams = [
+        $queryParams = array(
             'include-guests' => $include_guests,
             'include-deleted' => $include_deleted,
             'start-index' => $startIndex,
             'max-results' => $maxResult,
-        ];
+        );
 
         $response = $this->request->get('user', array_merge($queryParams, $this->expandQuery()));
 
@@ -32,7 +32,7 @@ class Users extends BaseExpand
 
     public function get()
     {
-        $queryParams = [];
+        $queryParams = array();
         $user_id = $this->getId();
 
         $response = $this->request->get('user/'.$user_id, array_merge($queryParams, $this->expandQuery()));
@@ -42,10 +42,10 @@ class Users extends BaseExpand
 
     public function create($name, $email, $_options = array())
     {
-        $queryParams = [
+        $queryParams = array(
             'name' => $name,
             'email' => $email,
-        ];
+        );
         if (isset($_options['title'])) {
             $queryParams['title'] = $_options['title'];
         }
@@ -77,9 +77,9 @@ class Users extends BaseExpand
 
     public function send($message)
     {
-        $queryParams = [
+        $queryParams = array(
             'message' => $message,
-        ];
+        );
         $user_id = $this->getId();
 
         $response = $this->request->post('user/'.$user_id.'/message', $queryParams);
@@ -102,14 +102,14 @@ class Users extends BaseExpand
      */
     public function update($name, $email, $mention_name, $timezone = 'UTC', $is_group_admin = false, $title = '', $password = null)
     {
-        $queryParams = [
+        $queryParams = array(
             'name' => $name,
             'title' => $title,
             'mention_name' => $mention_name,
             'is_group_admin' => $is_group_admin,
             'timezone' => $timezone,
             'email' => $email,
-        ];
+        );
         if ($password != null) {
             $queryParams['password'] = $password;
         }
@@ -122,7 +122,7 @@ class Users extends BaseExpand
 
     public function delete()
     {
-        $queryParams = [];
+        $queryParams = array();
         $user_id = $this->getId();
 
         $response = $this->request->delete('user/'.$user_id, array_merge($queryParams, $this->expandQuery()));

@@ -19,10 +19,10 @@ class Rooms extends BaseExpand
 
     public function all($startIndex = 0, $maxResult = 100)
     {
-        $queryParams = [
+        $queryParams = array(
             'start-index' => $startIndex,
             'max-results' => $maxResult,
-        ];
+        );
 
         $response = $this->request->get('room', array_merge($queryParams, $this->expandQuery()));
 
@@ -31,7 +31,7 @@ class Rooms extends BaseExpand
 
     public function get()
     {
-        $queryParams = [];
+        $queryParams = array();
         $room_id_or_name = $this->getId();
 
         $response = $this->request->get('room/'.$room_id_or_name, array_merge($queryParams, $this->expandQuery()));
@@ -41,11 +41,11 @@ class Rooms extends BaseExpand
 
     public function create($name, $is_public = true, $guest_access = false, $owner_user_id = null)
     {
-        $queryParams = [
+        $queryParams = array(
             'name' => $name,
             'privacy' => (($is_public === true) ? 'public' : 'private' ),
             'guest_access' => $guest_access,
-        ];
+        );
         if ($owner_user_id != null) {
             $queryParams['owner_user_id'] = $owner_user_id;
         }
@@ -62,12 +62,12 @@ class Rooms extends BaseExpand
 
     public function send($message, $notify = false, $color = HipChat::COLOR_YELLOW, $message_format = HipChat::FORMAT_HTML)
     {
-        $queryParams = [
+        $queryParams = array(
             'message' => $message,
             'notify' => $notify,
             'color' => $color,
             'message_format' => $message_format,
-        ];
+        );
         $room_id_or_name = $this->getId();
 
         $response = $this->request->post('room/'.$room_id_or_name.'/notification', $queryParams);
@@ -88,16 +88,16 @@ class Rooms extends BaseExpand
      */
     public function update($name, $is_public, $is_archived, $is_guest_accessible, $topic, $owner_user_id)
     {
-        $queryParams = [
+        $queryParams = array(
             'name' => $name,
             'privacy' => (($is_public === true) ? 'public' : 'private' ),
             'is_archived' => $is_archived,
             'is_guest_accessible' => $is_guest_accessible,
             'topic' => $topic,
-            'owner' => [
+            'owner' => array(
                 'id' => $owner_user_id,
-            ],
-        ];
+            ),
+        );
         $room_id_or_name = $this->getId();
 
         $response = $this->request->put('room/'.$room_id_or_name.'', $queryParams);
@@ -107,7 +107,7 @@ class Rooms extends BaseExpand
 
     public function delete()
     {
-        $queryParams = [];
+        $queryParams = array();
         $room_id_or_name = $this->getId();
 
         $response = $this->request->delete('room/'.$room_id_or_name, array_merge($queryParams, $this->expandQuery()));
@@ -122,9 +122,9 @@ class Rooms extends BaseExpand
      */
     public function setTopic($topic)
     {
-        $queryParams = [
+        $queryParams = array(
             'topic' => $topic,
-        ];
+        );
         $room_id_or_name = $this->getId();
 
         $response = $this->request->put('room/'.$room_id_or_name.'/topic', $queryParams);
@@ -134,10 +134,10 @@ class Rooms extends BaseExpand
 
     public function history($startIndex = 0, $maxResult = 100)
     {
-        $queryParams = [
+        $queryParams = array(
             'start-index' => $startIndex,
             'max-results' => $maxResult,
-        ];
+        );
         $room_id_or_name = $this->getId();
 
         $response = $this->request->get('room/'.$room_id_or_name.'/history', array_merge($queryParams, $this->expandQuery()));
@@ -165,10 +165,10 @@ class Rooms extends BaseExpand
 
     public function allMembers($startIndex = 0, $maxResult = 100)
     {
-        $queryParams = [
+        $queryParams = array(
             'start-index' => $startIndex,
             'max-results' => $maxResult,
-        ];
+        );
         $room_id_or_name = $this->getId();
 
         $response = $this->request->get('room/'.$room_id_or_name.'/member', array_merge($queryParams, $this->expandQuery()));

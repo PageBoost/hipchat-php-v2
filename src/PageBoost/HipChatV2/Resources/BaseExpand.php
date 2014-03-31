@@ -6,7 +6,7 @@ abstract class BaseExpand
 {
     protected $expand = null;
 
-    public function expand($properties = [])
+    public function expand($properties = array())
     {
         if (is_array($properties)) {
             $this->expand = implode(',', $properties);
@@ -20,9 +20,9 @@ abstract class BaseExpand
     public function expandQuery()
     {
         if ($this->expand === null) {
-            return [];
+            return array();
         }
 
-        return ['expand'=>$this->expand];
+        return array('expand'=>$this->expand);
     }
 }

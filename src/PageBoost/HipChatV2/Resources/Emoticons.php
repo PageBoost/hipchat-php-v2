@@ -17,11 +17,11 @@ class Emoticons extends BaseExpand
 
     public function all($startIndex = 0, $maxResult = 100, $type = 'all')
     {
-        $queryParams = [
+        $queryParams = array(
             'start-index' => $startIndex,
             'max-results' => $maxResult,
             'type' => $type,
-        ];
+        );
 
         $response = $this->request->get('emoticon', array_merge($queryParams, $this->expandQuery()));
 

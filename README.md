@@ -11,7 +11,7 @@ Supported HTTP Clients: Guzzle 4.x, Guzzle 3.x, Resty 0.6.x
 
 Frameworks: Native PHP, Laravel 4.1
 
-PHP >= 5.4.x (short array syntax, which will be refactored to support 5.3.x)
+PHP >= 5.3.x ~~(short array syntax, which will be refactored to support 5.3.x)~~
 
 **TODO**:
 
@@ -20,7 +20,8 @@ PHP >= 5.4.x (short array syntax, which will be refactored to support 5.3.x)
 3. Laravel Facades and Configurations
 4. Full Documentation
 5. Tests
-6. ...
+6. ~~PHP 5.3 support~~
+7. ...
 
 ___
 
