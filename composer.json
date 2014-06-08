@@ -16,7 +16,7 @@
     "require-dev": {
         "illuminate/support": "4.1.*",
         "guzzlehttp/guzzle": "~4.0",
-        "guzzle/guzzle":"~3.7",
+        "guzzle/guzzle":"~3.0",
         "resty/resty": "@stable"
     },
     "suggest": {
