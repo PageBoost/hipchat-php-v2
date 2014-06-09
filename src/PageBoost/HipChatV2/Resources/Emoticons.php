@@ -30,7 +30,7 @@ class Emoticons extends BaseExpand
 
     public function get()
     {
-        $queryParams = [];
+        $queryParams = array();
         $id_or_shortcode = $this->getId();
 
         $response = $this->request->get('emoticon/'.$id_or_shortcode, array_merge($queryParams, $this->expandQuery()));

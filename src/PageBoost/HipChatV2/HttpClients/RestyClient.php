@@ -1,9 +1,7 @@
 <?php
-
 namespace PageBoost\HipChatV2\HttpClients;
 
 use Resty\Resty;
-
 use PageBoost\HipChatV2\HipChat;
 use PageBoost\HipChatV2\Contracts\RequestInterface;
 use PageBoost\HipChatV2\Response;
@@ -58,7 +56,7 @@ class RestyClient implements RequestInterface
      * @param array $queryParams
      * @return \Guzzle\Http\Message\ResponseInterface
      */
-    public function get($uri, $queryParams = [])
+    public function get($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('GET', $uri, $queryParams);
 
@@ -70,7 +68,7 @@ class RestyClient implements RequestInterface
      * @param array $queryParams
      * @return \Guzzle\Http\Message\ResponseInterface
      */
-    public function post($uri, $queryParams = [])
+    public function post($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('POST', $uri, $queryParams);
 
@@ -82,7 +80,7 @@ class RestyClient implements RequestInterface
      * @param array $queryParams
      * @return \Guzzle\Http\Message\ResponseInterface
      */
-    public function put($uri, $queryParams = [])
+    public function put($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('PUT', $uri, $queryParams);
 
@@ -94,7 +92,7 @@ class RestyClient implements RequestInterface
      * @param array $queryParams
      * @return \Guzzle\Http\Message\ResponseInterface
      */
-    public function delete($uri, $queryParams = [])
+    public function delete($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('DELETE', $uri, $queryParams);
 

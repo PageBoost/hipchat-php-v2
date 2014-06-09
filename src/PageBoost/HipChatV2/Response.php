@@ -1,5 +1,4 @@
 <?php
-
 namespace PageBoost\HipChatV2;
 
 use PageBoost\HipChatV2\Contracts\ResponseInterface;
@@ -96,6 +95,4 @@ class Response implements ResponseInterface
     {
         return $this->responseCode;
     }
-
-
 }

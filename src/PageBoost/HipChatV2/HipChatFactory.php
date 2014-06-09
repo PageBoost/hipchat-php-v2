@@ -1,6 +1,8 @@
 <?php
 namespace PageBoost\HipChatV2;
 
+use PageBoost\HipChatV2\Exceptions\HipChatV2Exception;
+
 class HipChatFactory
 {
     public static $httpClient = null;
@@ -59,8 +61,10 @@ class HipChatFactory
             self::$httpClient = new \PageBoost\HipChatV2\HttpClients\GuzzleV3;
         } elseif (class_exists('Resty\Resty')) {
             self::$httpClient = new \PageBoost\HipChatV2\HttpClients\RestyClient;
+//        } elseif (extension_loaded('curl')) {
+//            self::$httpClient = new \PageBoost\HipChatV2\HttpClients\CurlClient;
         } else {
-            throw new Exception(999, 'Supported Http Client Not Found!');
+            throw new HipChatV2Exception('There is no supported HTTP Client!', 999);
         }
 
         return self::$httpClient;

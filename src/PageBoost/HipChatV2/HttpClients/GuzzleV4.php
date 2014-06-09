@@ -1,5 +1,4 @@
 <?php
-
 namespace PageBoost\HipChatV2\HttpClients;
 
 use GuzzleHttp\Client;
@@ -78,7 +77,7 @@ class GuzzleV4 implements RequestInterface
      * @param array $queryParams
      * @return \GuzzleHttp\Message\ResponseInterface
      */
-    public function get($uri, $queryParams = [])
+    public function get($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('GET', $uri);
 
@@ -94,7 +93,7 @@ class GuzzleV4 implements RequestInterface
      * @param array $queryParams
      * @return \GuzzleHttp\Message\ResponseInterface
      */
-    public function post($uri, $queryParams = [])
+    public function post($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('POST', $uri);
 
@@ -112,7 +111,7 @@ class GuzzleV4 implements RequestInterface
      * @param array $queryParams
      * @return \GuzzleHttp\Message\ResponseInterface
      */
-    public function put($uri, $queryParams = [])
+    public function put($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('put', $uri);
 
@@ -130,7 +129,7 @@ class GuzzleV4 implements RequestInterface
      * @param array $queryParams
      * @return \GuzzleHttp\Message\ResponseInterface
      */
-    public function delete($uri, $queryParams = [])
+    public function delete($uri, $queryParams = array())
     {
         $request = $this->prepareRequest('delete', $uri);
 

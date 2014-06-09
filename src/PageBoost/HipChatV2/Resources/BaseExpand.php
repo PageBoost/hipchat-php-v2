@@ -1,7 +1,6 @@
 <?php
 namespace PageBoost\HipChatV2\Resources;
 
-
 abstract class BaseExpand
 {
     protected $expand = null;
