@@ -1,0 +1,4 @@
+name: HipChat API v2 PHP
+markdown: redcarpet
+highlighter: pygments
+destination: _site

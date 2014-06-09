@@ -1,0 +1,23 @@
+{% include header.html %}
+
+{% include navbar.html %}
+
+<div class="container">
+    <div class="row">
+
+        {% if page.type == 'api' %}
+            {% include sidebar-api.html %}
+            {% include main-container-9.html %}
+        {% else %}
+            {% if page.type == 'integrations' %}
+                {% include sidebar-integrations.html %}
+                {% include main-container-9.html %}
+            {% else %}
+                {% include main-container-12.html %}
+            {% endif %}
+        {% endif %}
+
+    </div>
+</div>
+
+{% include footer.html %}
