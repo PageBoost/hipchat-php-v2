@@ -1,8 +1,8 @@
 ---
 layout: default
-title: HipChat API V2
+title: Contributing
 type: contributing
 
 ---
 
-Empty page
+...
