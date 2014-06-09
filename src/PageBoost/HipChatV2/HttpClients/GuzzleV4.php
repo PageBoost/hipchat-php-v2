@@ -8,17 +8,40 @@ use GuzzleHttp\Message\ResponseInterface as GuzzleResponse;
 use GuzzleHttp\Message\RequestInterface as GuzzleRequest;
 use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Exception\TransferException;
-
 use PageBoost\HipChatV2\HipChat;
 use PageBoost\HipChatV2\Contracts\RequestInterface;
 use PageBoost\HipChatV2\Response;
 
+/**
+ * Class GuzzleV4
+ *
+ * @package PageBoost\HipChatV2\HttpClients
+ */
 class GuzzleV4 implements RequestInterface
 {
+    /**
+     * @var \GuzzleHttp\Client|null
+     */
     protected $client = null;
 
+    /**
+     * @var string
+     */
     protected $access_token = '';
 
+    /**
+     * @var null
+     */
+    protected $basicAuthUsername = null;
+
+    /**
+     * @var null
+     */
+    protected $basicAuthPassword = null;
+
+    /**
+     * @param null $client
+     */
     public function __construct($client = null)
     {
         if (!is_null($client)) {
@@ -35,6 +58,7 @@ class GuzzleV4 implements RequestInterface
 
     /**
      * @param string $access_token
+     * @return mixed|void
      */
     public function setAccessToken($access_token)
     {
@@ -136,6 +160,17 @@ class GuzzleV4 implements RequestInterface
     }
 
     /**
+     * @param $username
+     * @param $password
+     * @return void
+     */
+    public function setBasicAuth($username, $password)
+    {
+        $this->basicAuthUsername = $username;
+        $this->basicAuthPassword = $password;
+    }
+
+    /**
      * @param $method
      * @param $uri
      * @return \GuzzleHttp\Message\RequestInterface
@@ -143,9 +178,16 @@ class GuzzleV4 implements RequestInterface
     private function prepareRequest($method, $uri)
     {
         $request = $this->client->createRequest($method, $uri);
-        if (!empty($this->access_token)) {
+
+        if ($this->basicAuthUsername !== null and $this->basicAuthPassword != null) {
+            $request->setHeader(
+                'Authorization',
+                'Basic ' . base64_encode($this->basicAuthUsername.':'.$this->basicAuthPassword)
+            );
+        } elseif (!empty($this->access_token)) {
             $request->addHeader('Authorization', 'Bearer '.$this->access_token);
         }
+
         return $request;
     }
 

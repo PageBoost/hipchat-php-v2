@@ -14,6 +14,16 @@ class RestyClient implements RequestInterface
 
     protected $access_token = '';
 
+    /**
+     * @var null
+     */
+    protected $basicAuthUsername = null;
+
+    /**
+     * @var null
+     */
+    protected $basicAuthPassword = null;
+
     public function __construct($client = null)
     {
         if (!is_null($client)) {
@@ -107,10 +117,23 @@ class RestyClient implements RequestInterface
         return $return;
     }
 
+    /**
+     * @param $username
+     * @param $password
+     * @return void
+     */
+    public function setBasicAuth($username, $password)
+    {
+        $this->basicAuthUsername = $username;
+        $this->basicAuthPassword = $password;
+    }
+
     private function prepareRequest($method, $uri, $queryParams)
     {
         $headers = array();
-        if (!empty($this->access_token)) {
+        if ($this->basicAuthUsername !== null and $this->basicAuthPassword != null) {
+            $this->client->setCredentials($this->basicAuthUsername, $this->basicAuthPassword);
+        } elseif (!empty($this->access_token)) {
             $headers['Authorization'] = 'Bearer '.$this->access_token;
         }
         switch($method) {

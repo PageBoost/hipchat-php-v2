@@ -55,6 +55,15 @@ class Sessions extends BaseExpand
         return $responseObject;
     }
 
+    public function createOAuth($username, $password, $grant_type, $_options = array())
+    {
+        $this->request->setBasicAuth($username, $password);
+        $result =  $this->create($grant_type, $_options);
+        $this->request->setBasicAuth(null, null);
+
+        return $result;
+    }
+
     public function delete()
     {
         $queryParams = array();

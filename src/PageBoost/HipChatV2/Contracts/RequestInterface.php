@@ -55,5 +55,10 @@ interface RequestInterface
      */
     public function returnResponseObject($response);
 
-
+    /**
+     * @param $username
+     * @param $password
+     * @return void
+     */
+    public function setBasicAuth($username, $password);
 }
