@@ -200,7 +200,7 @@ class GuzzleV4 implements RequestInterface
             $response = $this->client->send($request);
         } catch (TransferException $e) {
             $json_exception = $e->getResponse()->json();
-            HipChat::throwException($json_exception['error']['code'], $json_exception['error']['message']);
+            HipChat::throwException($json_exception['error']['code'], $json_exception['error']['message'], $request->getUrl());
         }
         return $response;
     }

@@ -83,29 +83,29 @@ class HipChat
         return $this->request->getAccessToken();
     }
 
-    public static function throwException($code, $msg)
+    public static function throwException($code, $msg, $url = '')
     {
         switch($code) {
             case 400:
-                throw new \PageBoost\HipChatV2\Exceptions\BadRequestException($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\BadRequestException($msg, $code, $url);
                 break;
             case 401:
-                throw new \PageBoost\HipChatV2\Exceptions\UnauthorizedException($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\UnauthorizedException($msg, $code, $url);
                 break;
             case 403:
-                throw new \PageBoost\HipChatV2\Exceptions\ForbiddenException($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\ForbiddenException($msg, $code, $url);
                 break;
             case 404:
-                throw new \PageBoost\HipChatV2\Exceptions\NotFoundException($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\NotFoundException($msg, $code, $url);
                 break;
             case 500:
-                throw new \PageBoost\HipChatV2\Exceptions\InternalServerErrorException($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\InternalServerErrorException($msg, $code, $url);
                 break;
             case 503:
-                throw new \PageBoost\HipChatV2\Exceptions\ServerUnavailableException($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\ServerUnavailableException($msg, $code, $url);
                 break;
             default:
-                throw new \PageBoost\HipChatV2\Exceptions\HipChatV2Exception($msg, $code);
+                throw new \PageBoost\HipChatV2\Exceptions\HipChatV2Exception($msg, $code, $url);
         }
     }
 }

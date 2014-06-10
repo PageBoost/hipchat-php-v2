@@ -163,7 +163,7 @@ class RestyClient implements RequestInterface
             return $request;
         }
         $response_array = $this->objectToArray($request['body']);
-        HipChat::throwException($response_array['error']['code'], $response_array['error']['message']);
+        HipChat::throwException($response_array['error']['code'], $response_array['error']['message'], $request['meta']['uri']);
     }
 
     private function objectToArray($d)
