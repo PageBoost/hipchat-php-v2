@@ -24,14 +24,16 @@ $tokenResponse = $hipchat->session()->createOAuth('OAuth ID', 'Secret', 'client_
 
 ### <a href="api.html#response" name="response">#</a> Response
 
-All API Responses return `PageBoost\HipChatV2\Response` object.
+All API Responses return `PageBoost\HipChatV2\Response` object ( + ArrayAccess).
 
 ```php
 print $response->getRateLimit(); // "X-RateLimit-Limit" - http header
 print $response->getRateRemaining(); // "X-RateLimit-Remaining" - http header
 print $response->getRateReset(); // "X-RateLimit-Reset" - http header
 print $response->getResponseCode(); // HTTP Response Code (200, 201, 204, etc)
+
 var_dump($response->getData()); // Return array of returned data from API
+var_dump($response['email']); // Use Object as array via ArrayAccess
 ```
 
 ### <a href="api.html#exceptions" name="exceptions">#</a> Exceptions
