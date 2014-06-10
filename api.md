@@ -50,6 +50,16 @@ All exceptions extend `PageBoost\HipChatV2\Exceptions\HipChatV2Exception`.
 
 Exceptions are mapped to API Response Codes. You can handle them as you want.
 
+Exceptions have a knowledge of requested endpoint:
+
+```php
+try {
+    HipChat::setId('NotExisting')->get();
+} catch (HipChatV2Exception $e) {
+    $e->getUrl();
+}
+```
+
 ### <a href="api.html#expansion" name="expansion">#</a> Title Expansion
 
 There is support of "[title expansion](https://www.hipchat.com/docs/apiv2/expansion)".
