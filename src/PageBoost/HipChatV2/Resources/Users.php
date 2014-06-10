@@ -130,6 +130,28 @@ class Users extends BaseExpand
         return $this->request->returnResponseObject($response);
     }
 
+    public function uploadPhoto($image_data)
+    {
+        $queryParams = array(
+            'photo' => base64_encode($image_data)
+        );
+        $user_id = $this->getId();
+
+        $response = $this->request->put('user/'.$user_id.'/photo', array_merge($queryParams, $this->expandQuery()));
+
+        return $this->request->returnResponseObject($response);
+    }
+
+    public function deletePhoto()
+    {
+        $queryParams = array();
+        $user_id = $this->getId();
+
+        $response = $this->request->delete('user/'.$user_id.'/photo', array_merge($queryParams, $this->expandQuery()));
+
+        return $this->request->returnResponseObject($response);
+    }
+
     /**
      * @return null
      */
