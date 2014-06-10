@@ -2,6 +2,11 @@
 
 use Illuminate\Support\ServiceProvider;
 use PageBoost\HipChatV2\HipChatFactory;
+use PageBoost\HipChatV2\laravel\HipChatLaravel;
+use PageBoost\HipChatV2\Resources\Emoticons;
+use PageBoost\HipChatV2\Resources\Sessions;
+use PageBoost\HipChatV2\Resources\Rooms;
+use PageBoost\HipChatV2\Resources\Users;
 
 class HipChatServiceProvider extends ServiceProvider
 {
@@ -14,7 +19,7 @@ class HipChatServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->package('pageboost/hipchat-php-v2');
+        $this->package('page-boost/hipchat-php-v2');
     }
 
     /**
@@ -24,9 +29,52 @@ class HipChatServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('hipchat-v2', function ($app) {
+        $app = $this->app;
+        $app->singleton('hipchat-v2.httpClient', function ($app) {
 
-            return HipChatFactory::instance();
+            $config = $app['config']->get('hipchat-php-v2::config');
+            $httpClient = HipChatFactory::createHttpClient();
+
+            // Check for default OAuth Token
+            if (!empty($config['oauthToken'])) {
+                $httpClient->setAccessToken($config['oauthToken']);
+            }
+
+            return $httpClient;
+        });
+
+        $app->singleton('hipchat-v2.emoticons', function ($app) {
+
+            return new Emoticons(null, $app['hipchat-v2.httpClient']);
+        });
+
+        $app->singleton('hipchat-v2.sessions', function ($app) {
+
+            return new Sessions(null, $app['hipchat-v2.httpClient']);
+        });
+
+        $app->singleton('hipchat-v2.rooms', function ($app) {
+
+            return new Rooms(null, $app['hipchat-v2.httpClient']);
+        });
+
+        $app->singleton('hipchat-v2.users', function ($app) {
+
+            return new Users(null, $app['hipchat-v2.httpClient']);
+        });
+
+        $app->singleton('hipchat-v2', function ($app) {
+
+            $config = $app['config']->get('hipchat-php-v2::config');
+            $hipchat = new HipChatLaravel($app['hipchat-v2.httpClient'], $app['hipchat-v2.emoticons'], $app['hipchat-v2.sessions'], $app['hipchat-v2.rooms'], $app['hipchat-v2.users']);
+
+            // Check for Default OAuth ID and Secret
+            if (!empty($config['oauthId']) and !empty($config['oauthSecret'])) {
+                $hipchat->setDefaultOauthId($config['oauthId']);
+                $hipchat->setDefaultOauthSecret($config['oauthSecret']);
+            }
+
+            return $hipchat;
         });
     }
 
@@ -37,6 +85,6 @@ class HipChatServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('hipchat-v2');
+        return array('hipchat-v2', 'hipchat-v2.httpClient', 'hipchat-v2.emoticons', 'hipchat-v2.sessions', 'hipchat-v2.rooms', 'hipchat-v2.users');
     }
 }
