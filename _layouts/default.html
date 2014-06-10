@@ -13,8 +13,13 @@
                 {% include sidebar-integrations.html %}
                 {% include main-container-9.html %}
             {% else %}
-                {% include sidebar-integrations.html %}
-                {% include main-container-9.html %}
+                {% if page.type == 'examples' %}
+                    {% include sidebar-examples.html %}
+                    {% include main-container-9.html %}
+                {% else %}
+                    {% include sidebar-integrations.html %}
+                    {% include main-container-9.html %}
+                {% endif %}
             {% endif %}
         {% endif %}
 
