@@ -21,8 +21,7 @@ Frameworks: Vanilla PHP, Laravel 4.x
 
 - [ ] Improve PHPDoc blocks
 - [x] Ability to use Addon OAuth ID and Secret
-- [ ] Laravel Facades and Configurations
-- [ ] Laravel Queue ?
+- [x] Laravel Facades and Configurations
 - [x] Full Documentation
 - [ ] Tests
 - [x] PHP 5.3 support

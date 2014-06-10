@@ -52,18 +52,63 @@ $hipchat = \PageBoost\HipChatV2\HipChatFactory::instance();
 
 ### <a href="integrations.html#vanilla_php" name="vanilla_php">#</a> Vanilla PHP
 
-```php
- // Get general instance
-$hipchat = \PageBoost\HipChatV2\HipChatFactory::instance();
+#### With Composer Autoloader
 
-// Get Rooms instance
-\PageBoost\HipChatV2\HipChatFactory::setAccessToken('XXXXXXXXXXXXX');
-$hipchatRooms = \PageBoost\HipChatV2\HipChatFactory::room(); // Without Room ID
-$hipchatRooms = \PageBoost\HipChatV2\HipChatFactory::room(10000); // With Room ID
+```php
+use PageBoost\HipChatV2\HipChatFactory;
+
+ // Get general instance
+$hipchat = HipChatFactory::instance();
+$hipchat->setAccessToken('XXXXXXXXXXXXX');
+
+// Static
+HipChatFactory::setAccessToken('XXXXXXXXXXXXX');
+$hipchatRooms = HipChatFactory::room(); // Without Room ID
+$hipchatRooms = HipChatFactory::room(10000); // With Room ID
 ```
+
+#### Without Composer
+
+...
 
 ### <a href="integrations.html#laravel" name="laravel">#</a> Laravel
 
+- **Load Service Provider and Facades** in `app/config/app.php`
+
 ```php
-$hipchat = App::make('hipchat-v2');
+// Provider
+'providers' => array(
+    'PageBoost\HipChatV2\Laravel\HipChatServiceProvider',
+)
+// Facade
+'aliases' => array(
+    'HipChat'            => 'PageBoost\HipChatV2\Laravel\Facades\HipChat',
+    'HipChatRoom'        => 'PageBoost\HipChatV2\Laravel\Facades\HipChatRoom',
+    'HipChatEmoticon'    => 'PageBoost\HipChatV2\Laravel\Facades\HipChatEmoticon',
+    'HipChatSession'     => 'PageBoost\HipChatV2\Laravel\Facades\HipChatSession',
+    'HipChatUser'        => 'PageBoost\HipChatV2\Laravel\Facades\HipChatUser',
+)
+```
+Only HipChat Facade is really required if you use facades :smile:
+
+- **Publish Configs**
+
+```bash
+php artisan config:publish page-boost/hipchat-php-v2
+```
+
+- **Edit config file** if you need `app/config/packages/page-boost/hipchat-php-v2/config.php`.
+
+All options are optional and loaded in Service Provider if exists. You can set OAuth Token and Add-on Credentials in your code or own Service Provider.
+
+- **Usage:**
+
+```php
+$hipchat = App::make('hipchat-v2'); // Resolve from IoC Container
+
+HipChat::setAccessToken('XXXXXXXXXX'); // Set Access Token on the fly
+
+HipChat::room('YYYYYY')->send('Test msg'); // Send msg in room
+HipChatRoom::setId('YYYYYY')->send('Test msg'): // Send msg in room with shortcut facade
+
 ```

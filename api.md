@@ -158,3 +158,11 @@ $hipchat->user($user_id)->send($message); // Send private message. Plain text on
 $hipchat->user($user_id)->uploadPhoto($raw_photo_content); // Update User's avatar. Pass photo content e.g. fread($handle, filesize($filename));
 $hipchat->user($user_id)->deletePhoto(); // Remove User's avatar
 ```
+
+### <a href="api.html#laravel" name="laravel">#</a> Laravel Specific
+
+Config file can be used to set up global OAuth ID and Secret so Generating Token is easier:
+
+```php
+HipChat::generateToken($grant_type, $_options = array()); // Will call $hipchat->session->createOAuth(...) with ID and Secret from config file.
+```
