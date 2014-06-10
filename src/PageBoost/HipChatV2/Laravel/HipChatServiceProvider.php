@@ -33,6 +33,12 @@ class HipChatServiceProvider extends ServiceProvider
         $app->singleton('hipchat-v2.httpClient', function ($app) {
 
             $config = $app['config']->get('hipchat-php-v2::config');
+
+            // Check for Base Url (self-hosted HipChat Server)
+            if (!empty($config['baseUrl'])) {
+                HipChatFactory::$baseUrl = $config['baseUrl'];
+            }
+
             $httpClient = HipChatFactory::createHttpClient();
 
             // Check for default OAuth Token
