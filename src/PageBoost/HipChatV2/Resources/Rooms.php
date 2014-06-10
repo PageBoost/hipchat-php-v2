@@ -216,5 +216,6 @@ class Rooms extends BaseExpand
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 }

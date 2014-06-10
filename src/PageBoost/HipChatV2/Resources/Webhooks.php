@@ -87,6 +87,7 @@ class Webhooks extends BaseExpand
     public function setRoomId($room_id)
     {
         $this->room_id = $room_id;
+        return $this;
     }
 
     /**
@@ -103,5 +104,6 @@ class Webhooks extends BaseExpand
     public function setHookId($hook_id)
     {
         $this->hook_id = $hook_id;
+        return $this;
     }
 }
