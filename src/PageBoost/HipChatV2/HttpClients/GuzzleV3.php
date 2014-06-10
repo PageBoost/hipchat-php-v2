@@ -35,14 +35,14 @@ class GuzzleV3 implements RequestInterface
     /**
      * @param null $client
      */
-    public function __construct($client = null)
+    public function __construct($baseUrl, $client = null)
     {
         if (!is_null($client)) {
             $this->client = $client;
             return;
         }
 
-        $client = new Client(HipChat::BASE_URL.'/{version}/', array(
+        $client = new Client($baseUrl.'/{version}/', array(
             'version'=>HipChat::API_VERSION
         ));
 

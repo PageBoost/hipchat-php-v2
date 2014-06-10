@@ -22,7 +22,7 @@ class RestyClient implements RequestInterface
      */
     protected $basicAuthPassword = null;
 
-    public function __construct($client = null)
+    public function __construct($baseUrl, $client = null)
     {
         if (!is_null($client)) {
             $this->client = $client;
@@ -30,7 +30,7 @@ class RestyClient implements RequestInterface
         }
 
         $client = new Resty();
-        $client->setBaseURL(HipChat::BASE_URL.'/'.HipChat::API_VERSION.'/');
+        $client->setBaseURL($baseUrl.'/'.HipChat::API_VERSION.'/');
         $this->client = $client;
     }
 

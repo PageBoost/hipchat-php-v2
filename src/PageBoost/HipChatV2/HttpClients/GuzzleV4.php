@@ -41,7 +41,7 @@ class GuzzleV4 implements RequestInterface
     /**
      * @param null $client
      */
-    public function __construct($client = null)
+    public function __construct($baseUrl, $client = null)
     {
         if (!is_null($client)) {
             $this->client = $client;
@@ -49,7 +49,7 @@ class GuzzleV4 implements RequestInterface
         }
 
         $client = new Client(array(
-            'base_url' => array(HipChat::BASE_URL.'/{version}/', array('version' => HipChat::API_VERSION)),
+            'base_url' => array($baseUrl.'/{version}/', array('version' => HipChat::API_VERSION)),
         ));
 
         $this->client = $client;
