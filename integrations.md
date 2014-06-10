@@ -12,7 +12,7 @@ Begin by installing this package through Composer.
 ```js
 {
     "require": {
-        "PageBoost/hipchat-php-v2": "dev-master"
+        "page-boost/hipchat-php-v2": "dev-master"
     }
 }
 ```
