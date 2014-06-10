@@ -176,6 +176,25 @@ class Rooms extends BaseExpand
         return $this->request->returnResponseObject($response);
     }
 
+    public function getEmbeddingUrl($minimal = 1, $anonymous = 0, $timezone = 'UTC', $welcome_msg = '')
+    {
+        $currentRoomResponse = $this->get();
+        $currentRoom = $currentRoomResponse->getData();
+
+        if ($currentRoom['guest_access_url'] != null and !empty($currentRoom['guest_access_url'])) {
+            $params = array(
+                'minimal' => $minimal,
+                'anonymous' => $anonymous,
+                'timezone' => $timezone,
+                'welcome_msg' => $welcome_msg
+            );
+
+            return $currentRoom['guest_access_url'].'?'.http_build_query($params);
+        }
+
+        return null;
+    }
+
     public function webhook($hook_id = null)
     {
         $this->webhookResources->setRoomId($this->getId());
