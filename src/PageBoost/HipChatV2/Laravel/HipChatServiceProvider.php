@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use PageBoost\HipChatV2\HipChatFactory;
-use PageBoost\HipChatV2\laravel\HipChatLaravel;
+use PageBoost\HipChatV2\Laravel\HipChatLaravel;
 use PageBoost\HipChatV2\Resources\Emoticons;
 use PageBoost\HipChatV2\Resources\Sessions;
 use PageBoost\HipChatV2\Resources\Rooms;
