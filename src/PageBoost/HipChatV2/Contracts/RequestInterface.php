@@ -26,28 +26,28 @@ interface RequestInterface
      * @param array $queryParams
      * @return mixed
      */
-    public function get($uri, $queryParams = []);
+    public function get($uri, $queryParams = array());
 
     /**
      * @param       $uri
      * @param array $queryParams
      * @return mixed
      */
-    public function post($uri, $queryParams = []);
+    public function post($uri, $queryParams = array());
 
     /**
      * @param       $uri
      * @param array $queryParams
      * @return mixed
      */
-    public function put($uri, $queryParams = []);
+    public function put($uri, $queryParams = array());
 
     /**
      * @param       $uri
      * @param array $queryParams
      * @return mixed
      */
-    public function delete($uri, $queryParams = []);
+    public function delete($uri, $queryParams = array());
 
     /**
      * @param $response
