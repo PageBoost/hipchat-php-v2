@@ -154,6 +154,19 @@ class Rooms extends BaseExpand
         return $responseObject;
     }
 
+    public function inviteUser($user_id_or_email, $reason = '')
+    {
+        $queryParams = array();
+        if (!empty($reason)) {
+            $queryParams['reason'] = $reason;
+        }   
+        $room_id_or_name = $this->getId();
+        $response = $this->request->post('room/'.$room_id_or_name.'/invite/'.$user_id_or_email, $queryParams);
+
+        $responseObject = $this->request->returnResponseObject($response);
+        return $responseObject;
+    }
+
     public function deleteMember($user_id_or_email)
     {
         $room_id_or_name = $this->getId();
