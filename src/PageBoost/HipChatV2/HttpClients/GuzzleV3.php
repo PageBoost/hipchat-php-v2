@@ -144,7 +144,11 @@ class GuzzleV3 implements RequestInterface
         $return->setRateLimit($rateLimitArray[0]);
         $return->setRateRemaining($rateRemainingArray[0]);
         $return->setRateReset($rateResetArray[0]);
-        $return->setData($response->json());
+        if (204 == $response->getStatusCode()) {
+            $return->setData("");
+        } else {
+            $return->setData($response->json());
+        }
         $return->setResponseCode($response->getStatusCode());
 
         return $return;
