@@ -75,10 +75,20 @@ class Users extends BaseExpand
         return $responseObject;
     }
 
-    public function send($message)
+    /**
+     * Sends a user a private message
+     *
+     * @param string $message
+     * @param bool   $notify (default: false)
+     * @param string $message_format (default: text)
+     * @return mixed
+     */
+    public function send($message, $notify = false, $message_format = HipChat::FORMAT_TEXT)
     {
         $queryParams = array(
             'message' => $message,
+            'notify' => $notify,
+            'message_format' => $message_format,
         );
         $user_id = $this->getId();
 
